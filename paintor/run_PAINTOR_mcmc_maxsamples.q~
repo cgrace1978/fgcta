@@ -1,0 +1,23 @@
+#!/bin/bash
+#$ -cwd -V -N PAINTOR.12loci
+#$ -o qsubfiles/12loci/
+#$ -e qsubfiles/12loci/
+#$ -q short.qc
+#$ -pe shmem 1
+#$ -S /bin/bash
+
+date
+
+let sno=$SGE_TASK_ID
+
+echo $sno
+gene=`grep -w ^$sno 12loci.trim.txt | cut -f 6`
+iter=`grep -w ^$sno 12loci.trim.txt | cut -f 7`
+annot=`grep -w ^$sno 12loci.trim.txt | cut -f 8`
+
+for i in {1..10}; do 
+    echo $i;
+    bash run_PAINTOR_mcmc_maxsamples.bash $gene $iter $i $annot
+done
+
+date
