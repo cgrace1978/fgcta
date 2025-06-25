@@ -1,8 +1,5 @@
 #!/bin/bash
 
-## ../LD/ukb_v3_maf_imp_1_eur
-## ../CHD_munge/chr1.summstat.txt
-
 chr=$1
 st=$2
 en=$3
