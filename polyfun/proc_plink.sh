@@ -15,22 +15,18 @@ echo "------------------------------------------------"
  
 date
 
-## 1       2245570 SKI     1245570 3245570
-#bash finemap_test.bash 1 1245570 3245570
-## 
-
 sno=$SLURM_ARRAY_TASK_ID
 
+## remove duplicates from UKB genotype file
 /well/PROCARDIS/cgrace/pLOF_500K/plink2 \
     --bfile LD/ukb_v3_maf_imp_${sno}_eur \
     --rm-dup force-first \
     --make-bed --out LD_new/ukb_v3_maf_imp_${sno}_eur_rmdup
 
+## Add centiMorgan data to the UKB file (needed to generate ldscores
 ./plink \
     --bfile LD_new/ukb_v3_maf_imp_${sno}_eur_rmdup \
     --cm-map example_annotation/1000GP_Phase3/genetic_map_chr${sno}_combined_b37.txt ${sno} \
     --make-bed --out LD_new/ukb_v3_maf_imp_${sno}_eur_wcm
-
-#    --extract gen_annot/SKI.tmp \
 
 date
