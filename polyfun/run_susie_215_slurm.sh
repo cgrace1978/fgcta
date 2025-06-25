@@ -28,7 +28,4 @@ do
     bash finemap_susie.bash $chr $st $en ${MY_TASK}.${gene}
 done
 
-## 1       2245570 SKI     1245570 3245570
-
-
 date
